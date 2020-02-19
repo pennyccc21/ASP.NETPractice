@@ -26,10 +26,44 @@ namespace NathansCRUDWebsite
                     Product row = new Product();
                     row.ProductID = reader.GetInt32("ProductID");
                     row.Name = reader.GetString("Name");
-                    row.Price = reader.GetDouble("Price");
-                    row.CategoryID = reader.GetInt32("CategoryID");
-                    row.OnSale = reader.GetInt32("OnSale");
-                    row.StockLevel = reader.GetInt32("StockLevel");
+                    
+
+                    if (reader.IsDBNull(reader.GetOrdinal("Price")))
+                    {
+                        row.Price = null;
+                    }
+                    else
+                    {
+                        row.Price = reader.GetDouble("Price");
+                    }
+
+                    if (reader.IsDBNull(reader.GetOrdinal("CategoryID")))
+                    {
+                        row.CategoryID = null;
+                    }
+                    else
+                    {
+                        row.CategoryID = reader.GetInt32("CategoryID");
+                    }
+
+                    if (reader.IsDBNull(reader.GetOrdinal("OnSale")))
+                    {
+                        row.OnSale = null;
+                    }
+                    else
+                    {
+                        row.OnSale = reader.GetInt32("OnSale");
+                    }
+
+                    if (reader.IsDBNull(reader.GetOrdinal("StockLevel")))
+                    {
+                        row.StockLevel = null;
+                    }
+                    else
+                    {
+                        row.StockLevel = reader.GetInt32("StockLevel");
+                    }
+
                     products.Add(row);
                 }
                 return products;
